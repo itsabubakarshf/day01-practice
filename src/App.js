@@ -22,12 +22,14 @@ export default class App extends Component {
   onSearchChange=(e)=>this.setState({searchField:e.target.value.toLowerCase()})
   render() {
     console.log("render")
-    const filteredMonsters=this.state.monsters.filter(monster=>{
-      return monster.name.toLowerCase().includes(this.state.searchField)
+    const {monsters,searchField}=this.state;
+    const {onSearchChange}=this;
+    const filteredMonsters=monsters.filter(monster=>{
+      return monster.name.toLowerCase().includes(searchField)
     })
     return (
       <>
-      <input type="search" placeholder="search monsters" onChange={this.onSearchChange}/>
+      <input type="search" placeholder="search monsters" onChange={onSearchChange}/>
         {filteredMonsters.map((monster) => {
           return (
             <div className="all-monsters" key={monster.id}>
