@@ -19,7 +19,7 @@ export default class App extends Component {
         })
       );
   }
-  
+  onSearchChange=(e)=>this.setState({searchField:e.target.value.toLowerCase()})
   render() {
     console.log("render")
     const filteredMonsters=this.state.monsters.filter(monster=>{
@@ -27,9 +27,7 @@ export default class App extends Component {
     })
     return (
       <>
-      <input type="search" placeholder="search monsters" onChange={(e)=>{
-          this.setState({searchField:e.target.value.toLowerCase()})
-      }}/>
+      <input type="search" placeholder="search monsters" onChange={this.onSearchChange}/>
         {filteredMonsters.map((monster) => {
           return (
             <div className="all-monsters" key={monster.id}>
